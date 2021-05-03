@@ -13,7 +13,7 @@ public class BoardVO {
 	/** 작성자 이름 **/
 	private String writerNm;
 	/** 작성 날짜 **/
-	private String indate;
+	private String date;
 	
 	
 	public String getBoardidx() {
@@ -46,12 +46,13 @@ public class BoardVO {
 	public void setWriterNm(String writerNm) {
 		this.writerNm = writerNm;
 	}
-	public String getIndate() {
-		return indate;
+	public String getDate() {
+		return date;
 	}
-	public void setIndate(String indate) {
-		this.indate = indate;
+	public void setDate(String date) {
+		this.date = date;
 	}
+	
 	
 	
 	
