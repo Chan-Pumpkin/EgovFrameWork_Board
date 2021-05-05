@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.board.service.impl.BoardDAO">
+
+	<!--게시물 목록  -->
+	 <select id="selectBoardList" resultType="egovframework.board.service.BoardVO"> 
+
+    		 SELECT
+				A.IDX as idx
+				  , A.TITLE as title
+				  , A.COUNT as count
+				  , A.CONTENTS as contents
+				  , A.WRITER as writer
+				  , date_format(A.INDATE, '%y-%m-%d') as indate
+				  , B.USER_NAME as writerName
+			FROM TB_BOARD A LEFT JOIN TB_USER B ON A.WRITER = B.USER_ID
+			WHERE 1=1 
+			<if test="searchKeyword != null and searchKeyword != ''">
+		      
+				AND(A.TITLE LIKE CONCAT('%', #{searchKeyword},'%')
+             		OR A.CONTENTS LIKE CONCAT('%', #{searchKeyword},'%')
+             		)
+             		
+			</if>
+			ORDER BY A.INDATE DESC 
+			LIMIT #{recordCountPerPage} OFFSET #{firstIndex}      	
+				
+	</select> 
+
+</mapper>
